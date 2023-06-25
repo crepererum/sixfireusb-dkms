@@ -1,0 +1,11 @@
+--- sixfireusb-0.6.2/firmware.c	2023-06-25 13:19:35.280905556 +0200
++++ sixfireusb-0.6.2/firmware.c	2023-06-25 13:19:46.737513103 +0200
+@@ -324,7 +324,7 @@
+ 
+ 	while (c != end) {
+ 		for (i = 0; c != end && i < FPGA_BUFSIZE; i++, c++)
+-			buffer[i] = byte_rev_table[(u8) *c];
++			buffer[i] = bitrev8((u8)*c);
+ 
+ 		ret = usb6fire_fw_fpga_write(device, buffer, i);
+ 		if (ret < 0) {
